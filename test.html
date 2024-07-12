@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<script>
+    window.onload = function(){
+    for (let i = 1; i < 7; i ++){
+        var x = document.createElement("IMG");
+        x.src = "images/" + i + ".jpg";
+        x.style.width = "30%";
+        x.style.padding = "10px";
+        document.getElementById("pictures").appendChild(x);
+    }
+}
+</script>
+<html>
+    <head>
+        <style>
+            img.center {
+                position: absolute;
+                top: 50%;
+                bottom: 50%;
+                left: 50%;
+                right: 50%;
+                margin: auto;
+            }
+
+            .center{
+                display:block;
+                margin-left: auto;
+                margin-right: auto;
+                width: 75%;
+            }
+        </style>
+    </head>
+    <body>
+        <h1 style="background-color: lightslategrey;text-align:center">Pictures</h1>
+        <div id="pictures" class="center">
+        </div>
+    </body>
+</html>
+

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body, html{
+  height: 100%;
+  margin: 0;
+  font: 400 15px/1.8 "Lato", sans-serif;
+}
+
+.backgroundImage{
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    font-size: 16px;
+}
+
+.image-parallax {
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%,0);
+    pointer-events: none
+}
+
+.caption{
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    text-align: center;
+    color: black;
+    opacity: 100%;
+}
+
+.caption span.border {
+    background-color: #111;
+    color: #fff;
+    padding: 18px;
+    font-size: 25px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+}
+
+h3{
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    font:25px "Lato", sans-serif;
+    color: #111;
+}
+
+p{
+    font:15px "Lato", sans-serif;
+}
+
+@media screen and (orientation: portrait) {
+    .caption span.border {
+        font-size: 50px;
+    }
+}
+
+@media screen and (orientation: landscape){
+
+}
+
+</style>
+</head>
+<body>
+    <div class = "backgroundImage">
+        <img src="images/1.jpg" data-speed="-1" class="image-parallax">
+        <div class="caption">
+            <span class="border">Nick Durnil</span>
+        </div>
+    </div>
+    <div style="padding:50px;background-color:white;font-size:36px; text-align:center;">
+        <h3>My Test Website</h3>
+        <p>Real quick test website to see if I can make something look good</p>
+        <a href="test">test</a>
+    </div>
+
+    
+    <div class="backgroundImage">
+        <img src="images/2.jpg" data-speed=".75" class="image-parallax">
+    </div> 
+</body>
+</html>
+
+<script>
+    $('.caption').each(function(){
+        var tag = $(this);
+        var tagParent = $(this).parent();
+        var origHeight = tagParent.offset().top;
+
+        function fadeAway(){
+            var tagY = tagParent.offset().top;
+            var tagH = tagParent.innerHeight();
+            var winY = $(this).scrollTop();
+
+            var opacityPer = 100 - winY / tagH * 100 * 2;
+            tag.css({
+                opacity: opacityPer + "%"
+            })
+        }
+
+        $(document).on({
+        scroll: function(){
+            fadeAway();
+        }
+        });
+    })
+
+    $('.image-parallax').each(function(){
+    var img = $(this);
+    var imgParent = $(this).parent();
+
+    function parallaxImage(){
+        var speed = img.data('speed');
+        var imgY = imgParent.offset().top;
+        var winY = $(this).scrollTop();
+        var winH = $(this).height();
+        var parentH = imgParent.innerHeight();
+
+        var winBottom = winY + winH;
+
+        if(winBottom >= imgY && winY < imgY + parentH){
+            var imgBottom = (winBottom - imgY) * speed;
+
+            var imgTop = winH + parentH;
+
+            var imgPercent = ((imgBottom / imgTop) * 100) + (50 - (speed * 50));
+        }
+        img.css({
+            top: imgPercent + "%",
+            transform: 'translate(-50%, -' + imgPercent + '%)'
+        });
+    }
+
+    function updateHeight(){
+        var height = window.innerHeight;
+        var width = window.innerWidth;
+        if(width > height){
+            height += (width - height) / 2;
+        }
+        else{
+            height += 100;
+        }
+        img.css({
+            height: height + "px",
+        })
+    }
+
+    $(document).on({
+        scroll: function(){
+            parallaxImage();
+        }
+    });
+    $(window).on({
+        load: function(){
+            parallaxImage();
+            updateHeight();
+        },
+        resize: function(){
+            if(!window.matchMedia("(pointer: coarse)").matches) {
+                updateHeight();
+            } 
+        }
+    });
+
+    screen.orientation.addEventListener("change", function(e) {
+        updateHeight();
+    });
+
+   })
+</script>
