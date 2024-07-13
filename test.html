@@ -1,15 +1,5 @@
 <!DOCTYPE html>
-<script>
-    window.onload = function(){
-    for (let i = 1; i < 7; i ++){
-        var x = document.createElement("IMG");
-        x.src = "images/" + i + ".jpg";
-        x.style.width = "30%";
-        x.style.padding = "10px";
-        document.getElementById("pictures").appendChild(x);
-    }
-}
-</script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <html>
     <head>
         <style>
@@ -35,5 +25,16 @@
         <div id="pictures" class="center">
         </div>
     </body>
+<script>
+window.onload = function(){
+    for (let i = 1; i < 80; i ++){
+        var x = document.createElement("IMG");
+        x.src = "images/" + i + ".webp";
+        x.style.width = "30%";
+        x.style.padding = "10px";
+        document.getElementById("pictures").appendChild(x);
+    }
+}
+</script>
 </html>
-
+<script>
