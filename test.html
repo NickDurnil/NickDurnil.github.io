@@ -16,7 +16,7 @@
                 display:block;
                 margin-left: auto;
                 margin-right: auto;
-                width: 75%;
+                width: 80%;
             }
         </style>
     </head>
@@ -27,12 +27,37 @@
     </body>
 <script>
 window.onload = function(){
-    for (let i = 1; i < 79; i ++){
+    var queue = [];
+    var heightOffsetVert = [0,0,0];
+    var heightOffsetHorz = [0,0,0];
+    for (let i = 1; i < 55; i ++){
         var x = document.createElement("IMG");
-        x.src = "images/25 Quality/" + i + ".webp";
-        x.style.width = "30%";
-        x.style.padding = "10px";
-        document.getElementById("pictures").appendChild(x);
+        var img = new Image();
+        var translation = "0% ";
+
+        x.src = "images/25 Quality/images (" + i + ").webp";
+        img.src = "images/25 Quality/images (" + i + ").webp";
+
+        x.style.width = "25%";
+        x.style.position = "absolute";
+
+        if(i % 3 == 2){
+            translation = "105% ";
+        }
+        else if(i % 3 == 0){
+            translation = "210% ";
+        }
+        if(img.width > img.height){
+            translation = translation + (Math.floor((i-1) / 3) * 110 + heightOffsetHorz[(i - 1) % 3]) + "%"
+        }
+        else{
+            translation = translation + (Math.floor((i-1) / 3) * 48 + heightOffsetVert[(i - 1) % 3]) + "%";
+            heightOffsetHorz[(i - 1) % 3] += 126;
+            heightOffsetVert[(i - 1) % 3] += 56;
+            console.log(i, (i - 1) % 3);
+        }
+        x.style.translate = translation;
+        document.getElementById("pictures").appendChild(x);   
     }
 }
 </script>
