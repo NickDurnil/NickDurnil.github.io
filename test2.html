@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<html>
+    <head>
+        <style>
+            img.center {
+                position: absolute;
+                top: 50%;
+                bottom: 50%;
+                left: 50%;
+                right: 50%;
+                margin: auto;
+            }
+
+            .center{
+                display:block;
+                margin-left: auto;
+                margin-right: auto;
+                width: 80%;
+            }
+
+            .frame{
+                overflow: hidden;
+            }
+
+            .frame img{
+                width: 100%;
+                
+            }
+        </style>
+    </head>
+    <body>
+        <h1 style="background-color: lightslategrey;text-align:center">Pictures</h1>
+        <div id="frames" class="center">
+        </div>
+    </body>
+<script>
+window.onload = function(){
+    var vertImage = [0,0,0];
+    var width = window.innerWidth / 4;
+    var vertWidth = width * 1.5;
+    var j = 0;
+    for (let i = 1; i < 55; i ++){
+        j++;
+        if(!vertImage[(j - 1) % 3]){
+            var x = document.createElement("div");
+            var img = new Image();
+            img.src = "images/25 Quality/images (" + i + ").webp";
+            var translation = "0% ";
+
+            //x.style.backgroundColor = "black";
+            x.style.position = "absolute";
+            var testWidth = img.height;
+            if(img.width > img.height){
+                x.style.width =  width + "px";
+                x.style.height = width * 2 / 3 + "px";
+                if(j % 3 == 2){
+                    translation = "105% ";
+                }
+                else if(j % 3 == 0){
+                    translation = "210% ";
+                }
+                translation = translation + (Math.floor((j-1) / 3) * 110) + "%"
+            }
+            else{
+                x.style.width =  vertWidth * 2 / 3 + "px";
+                x.style.height = vertWidth * .933 + "px";
+                vertImage[(j - 1) % 3] = 1;
+                if(j % 3 == 2){
+                    translation = "105% ";
+                }
+                else if(j % 3 == 0){
+                    translation = "210% ";
+                }
+                translation = translation + (Math.floor((j-1) / 3) * 52.4) + "%"
+            }
+            
+
+            x.style.translate = translation;
+            x.id = "picture " + i;
+            x.className = "frame";
+            document.getElementById("frames").appendChild(x);
+
+            document.getElementById("picture " + i).appendChild(img);
+        }
+        else{
+            i--;
+            vertImage[(j - 1) % 3] = 0; 
+        }
+    }
+}
+</script>
+</html>
+<script>
