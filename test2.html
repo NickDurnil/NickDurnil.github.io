@@ -16,20 +16,26 @@ var scrollingLockInit = 0;
 
 function presentImage(i){
     var x = document.createElement("div");
-    x.style.backgroundColor = "black";
-    x.style.opacity = "95%";
-    x.style.height = "150%";
+    x.style.backgroundColor = "rgba(0, 0, 0, 0.80)";
+    x.style.height = "110%";
     x.style.width = "100%";
     x.style.zIndex = "100";
     x.style.position = "absolute";
     x.style.margin = "-21px -10px";
+    x.style.textAlign = "center";
     x.id = "greyBackground";
     x.style.top = x.getBoundingClientRect().top + window.scrollY + "px";
-    
 
     document.getElementById("fullScreen").appendChild(x);
     scrolling = 1;
     scrollingLockInit = 1;
+
+    var img = new Image();
+    img.src = "images/Full Quality/images (" + i + ").webp";
+    img.style.height = "100%";
+    img.style.opacity = "100% !important";
+
+    document.getElementById("greyBackground").appendChild(img);
     
     var cancelImg = new Image();
     cancelImg.src = "icons/x.png";
