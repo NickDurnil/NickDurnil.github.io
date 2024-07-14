@@ -11,6 +11,57 @@ function preload(){
     }
 }
 
+var scrolling = 0;
+var scrollingLockInit = 0;
+
+function presentImage(i){
+    var x = document.createElement("div");
+    x.style.backgroundColor = "black";
+    x.style.opacity = "95%";
+    x.style.height = "150%";
+    x.style.width = "100%";
+    x.style.zIndex = "100";
+    x.style.position = "absolute";
+    x.style.margin = "-21px -10px";
+    x.id = "greyBackground";
+    x.style.top = x.getBoundingClientRect().top + window.scrollY + "px";
+    
+
+    document.getElementById("fullScreen").appendChild(x);
+    scrolling = 1;
+    scrollingLockInit = 1;
+    
+    var cancelImg = new Image();
+    cancelImg.src = "icons/x.png";
+    cancelImg.style.height = "100%";
+
+    var cancel = document.createElement("button");
+    cancel.style.backgroundColor = "transparent";
+    cancel.style.border = "0";
+    cancel.style.padding = "0px";
+    cancel.style.objectFit = "fill";
+    cancel.style.height = "50px";
+    cancel.style.width = "50px";
+    cancel.style.position = "absolute";
+    cancel.style.zIndex = "101";
+    cancel.style.top = cancel.getBoundingClientRect().top + window.scrollY + 25 + "px";
+    cancel.style.left = "90%";
+    cancel.id = "cancelButton";
+    cancel.onclick = function(){cancelButton()};
+
+    document.getElementById("fullScreen").appendChild(cancel);
+    document.getElementById("cancelButton").appendChild(cancelImg);
+}
+
+function cancelButton(){
+    var elem = document.getElementById("greyBackground");
+    elem.remove();
+    elem = document.getElementById("cancelButton");
+    elem.remove();
+    scrolling = 0;
+    scrollingLockInit = 0;
+}
+
 function loadImages(){
     var vertImage = [0,0,0];
     var j = 0;
@@ -19,7 +70,11 @@ function loadImages(){
     for (let i = 1; i <= numImages; i ++){
         j++;
         if(!vertImage[(j - 1) % 3]){
-            var x = document.createElement("div");
+            var x = document.createElement("button");
+            x.onclick = function() {presentImage(i);};
+            x.style.padding = 0;
+            x.style.border = 'none';
+            x.style.background = 'none';
             var img = new Image();
             img.src = "images/25 Quality/images (" + i + ").webp";
             var translation = "0% ";
@@ -34,7 +89,6 @@ function loadImages(){
                 translation = "210% ";
             }
 
-            console.log(img.width);
             if(img.width >= img.height){
                 x.style.width =  width + "px";
                 x.style.height = width * 2 / 3 + "px";
@@ -111,6 +165,19 @@ $(window).on({
         updateImages();
     }
 })
+
+var y = 0;
+$(document).on({
+    scroll: function(){
+        if(scrollingLockInit){
+            y = window.scrollY;
+            scrollingLockInit = 0;
+        }
+        if(scrolling){
+            window.scrollTo(0,y);
+        }
+    }
+})
 </script>
 <html>
     <head>
@@ -141,6 +208,7 @@ $(window).on({
         </style>
     </head>
     <body>
+        <div id="fullScreen"></div>
         <h1 style="background-color: lightslategrey;text-align:center">Pictures</h1>
         <div id="frames" class="center">
         </div>
