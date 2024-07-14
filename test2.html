@@ -23,6 +23,7 @@ function presentImage(i){
     x.style.position = "absolute";
     x.style.margin = "-21px -10px";
     x.style.textAlign = "center";
+    x.style.objectFit = "fill"
     x.id = "greyBackground";
     x.style.top = x.getBoundingClientRect().top + window.scrollY + "px";
 
@@ -32,7 +33,7 @@ function presentImage(i){
 
     var img = new Image();
     img.src = "images/Full Quality/images (" + i + ").webp";
-    img.style.height = "100%";
+    img.style.width = "100%";
     img.style.opacity = "100% !important";
 
     document.getElementById("greyBackground").appendChild(img);
@@ -51,7 +52,7 @@ function presentImage(i){
     cancel.style.position = "absolute";
     cancel.style.zIndex = "101";
     cancel.style.top = cancel.getBoundingClientRect().top + window.scrollY + 25 + "px";
-    cancel.style.left = "90%";
+    cancel.style.left = "95%";
     cancel.id = "cancelButton";
     cancel.onclick = function(){cancelButton()};
 
