@@ -12,9 +12,10 @@ function preload(){
 }
 
 var scrolling = 0;
-var scrollingLockInit = 0;
+var y = 0;
 
 function presentImage(i){
+    y = window.scrollY;
     var x = document.createElement("div");
     x.style.backgroundColor = "rgba(0, 0, 0, 0.80)";
     x.style.height = "110%";
@@ -22,6 +23,7 @@ function presentImage(i){
     x.style.zIndex = "100";
     x.style.position = "absolute";
     x.style.margin = "-21px -10px";
+    x.style.justifyContent = "center";
     x.style.alignItems = "center";
     x.style.display = "flex";
     x.style.objectFit = "fill";
@@ -34,6 +36,16 @@ function presentImage(i){
 
     var img = new Image();
     img.src = "images/Full Quality/images (" + i + ").webp";
+    var tempImg = new Image();
+    tempImg = "imges/25 Qality/images(" + i + ").webp";
+    /*
+    if(tempImg.width > tempImg.height){
+        img.style.width = "100%";
+    }
+    else{
+        img.style.height = "100%";
+    }
+    */
     img.style.width = "100%";
     img.style.opacity = "100% !important";
 
@@ -47,13 +59,12 @@ function presentImage(i){
     cancel.style.backgroundColor = "transparent";
     cancel.style.border = "0";
     cancel.style.padding = "0px";
-    cancel.style.objectFit = "fill";
     cancel.style.height = "50px";
     cancel.style.width = "50px";
     cancel.style.position = "absolute";
     cancel.style.zIndex = "101";
     cancel.style.top = cancel.getBoundingClientRect().top + window.scrollY + 25 + "px";
-    cancel.style.left = "95%";
+    cancel.style.left = window.innerWidth - 125 + "px";
     cancel.id = "cancelButton";
     cancel.onclick = function(){cancelButton()};
 
@@ -68,6 +79,14 @@ function cancelButton(){
     elem.remove();
     scrolling = 0;
     scrollingLockInit = 0;
+}
+
+function updateCloseup(){
+    var x = document.getElementById("greyBackground");
+    x.style.top = x.getBoundingClientRect().top + window.scrollY + 10 +  "px";
+
+    var cancel = document.getElementById("cancelButton");
+    cancel.style.top = cancel.getBoundingClientRect().top + window.scrollY + 25 + "px";
 }
 
 function loadImages(){
@@ -171,21 +190,22 @@ $(window).on({
     },
     resize: function(){
         updateImages();
+        //updateCloseup();
     }
 })
 
-var y = 0;
 $(document).on({
     scroll: function(){
-        if(scrollingLockInit){
-            y = window.scrollY;
-            scrollingLockInit = 0;
-        }
         if(scrolling){
             window.scrollTo(0,y);
         }
     }
 })
+
+screen.orientation.addEventListener("change", function(e) {
+    updateCloseup();
+});
+
 </script>
 <html>
     <head>
