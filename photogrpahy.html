@@ -240,11 +240,22 @@ screen.orientation.addEventListener("change", function(e) {
             .frame img{
                 width: 100%;
             }
+
+            h1{
+                font-size:20px;
+            }
+            @media screen and (orientation: portrait) {
+                h1{
+                    font-size:30px;
+                }
+            }
         </style>
+        <link href="myCSS.css" rel="stylesheet">
     </head>
     <body style="background-color: black;">
         <div id="fullScreen"></div>
-        <h1 style="background-color: lightslategrey;text-align:center">Pictures</h1>
+        <h1>&nbsp;</h1>
+        <h1><a class="back-bar" href="index.html">Back to Main Page</a></h1>
         <div id="frames" class="center"></div>
     </body>
 </html>
