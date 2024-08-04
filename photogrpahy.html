@@ -195,7 +195,9 @@ $(window).on({
     },
     resize: function(){
         updateImages();
-        updateCloseup();
+        if(scrolling){
+            updateCloseup();
+        }
     }
 })
 
