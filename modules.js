@@ -82,7 +82,6 @@ function update(){
     if(scrolling){
         updateCloseup();
     }
-    console.log(scrolling);
 }
 
 function scrollFun(){
