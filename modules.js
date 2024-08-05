@@ -1,85 +1,98 @@
-$('.caption').each(function(){
-    var tag = $(this);
-    var tagParent = $(this).parent();
-    var origHeight = tagParent.offset().top;
+var scrolling = 0
 
-    function fadeAway(){
-        var tagY = tagParent.offset().top;
-        var tagH = tagParent.innerHeight();
-        var winY = $(this).scrollTop();
+function presentImage(location){
+    y = window.scrollY;
+    var x = document.createElement("div");
+    x.style.backgroundColor = "rgba(0, 0, 0, 0.80)";
+    x.style.height = "110%";
+    x.style.width = "100%";
+    x.style.zIndex = "100";
+    x.style.position = "absolute";
+    x.style.margin = "-21px -10px";
+    x.style.justifyContent = "center";
+    x.style.alignItems = "center";
+    x.style.display = "flex";
+    x.style.objectFit = "fill";
+    x.id = "greyBackground";
+    x.style.top = x.getBoundingClientRect().top + window.scrollY + "px";
 
-        var opacityPer = 100 - winY / tagH * 100 * 2;
-        tag.css({
-            opacity: opacityPer + "%"
-        })
-    }
+    document.getElementById("fullScreen").appendChild(x);
+    scrolling = 1;
 
-    $(document).on({
-    scroll: function(){
-        fadeAway();
-    }
-    });
-})
-
-$('.image-parallax').each(function(){
-var img = $(this);
-var imgParent = $(this).parent();
-
-function parallaxImage(){
-    var speed = img.data('speed');
-    var imgY = imgParent.offset().top;
-    var winY = $(this).scrollTop();
-    var winH = $(this).height();
-    var parentH = imgParent.innerHeight();
-
-    var winBottom = winY + winH;
-
-    if(winBottom >= imgY && winY < imgY + parentH){
-        var imgBottom = (winBottom - imgY) * speed;
-
-        var imgTop = winH + parentH;
-
-        var imgPercent = ((imgBottom / imgTop) * 100) + (50 - (speed * 50));
-    }
-    img.css({
-        top: imgPercent + "%",
-        transform: 'translate(-50%, -' + imgPercent + '%)'
-    });
-}
-
-function updateHeight(){
-    var height = window.innerHeight;
-    var width = window.innerWidth;
-    if(width > height){
-        height += (width - height) / 2;
+    var img = new Image();
+    img.src = "images/" + location;
+    img.id = "fullQuality";
+    if(window.innerWidth > window.innerHeight){
+        img.style.height = "90%";
     }
     else{
-        height += 100;
+        img.style.width = "90%";
     }
-    img.css({
-        height: height + "px",
-    })
+    
+    img.style.opacity = "100% !important";
+
+    document.getElementById("greyBackground").appendChild(img);
+    
+    var cancelImg = new Image();
+    cancelImg.src = "icons/x.png";
+    cancelImg.style.height = "100%";
+
+    var cancel = document.createElement("button");
+    cancel.style.backgroundColor = "transparent";
+    cancel.style.border = "0";
+    cancel.style.padding = "0px";
+    cancel.style.height = "50px";
+    cancel.style.width = "50px";
+    cancel.style.position = "absolute";
+    cancel.style.zIndex = "101";
+    cancel.style.top = cancel.getBoundingClientRect().top + window.scrollY + 25 + "px";
+    cancel.style.left = window.innerWidth - 125 + "px";
+    cancel.id = "cancelButton";
+    cancel.onclick = function(){cancelButton()};
+
+    document.getElementById("fullScreen").appendChild(cancel);
+    document.getElementById("cancelButton").appendChild(cancelImg);
 }
 
-$(document).on({
-    scroll: function(){
-        parallaxImage();
-    }
-});
-$(window).on({
-    load: function(){
-        parallaxImage();
-        updateHeight();
-    },
-    resize: function(){
-        if(!window.matchMedia("(pointer: coarse)").matches) {
-            updateHeight();
-        } 
-    }
-});
+function cancelButton(){
+    var elem = document.getElementById("greyBackground");
+    elem.remove();
+    elem = document.getElementById("cancelButton");
+    elem.remove();
+    scrolling = 0;
+}
 
-screen.orientation.addEventListener("change", function(e) {
-    updateHeight();
-});
+function updateCloseup(){
+    var cancel = document.getElementById("cancelButton");
+    cancel.style.left = window.innerWidth - 125 + "px";
 
-})
+    var img = document.getElementById("fullQuality");
+
+    if(window.innerWidth > window.innerHeight){
+        img.style.height = "90%";
+        img.style.width = ''; 
+    }
+    else{
+        img.style.width = "90%";
+        img.style.height = '';
+    }
+}
+
+function update(){
+    if(scrolling){
+        updateCloseup();
+    }
+    console.log(scrolling);
+}
+
+function scrollFun(){
+    if(scrolling){
+        window.scrollTo(0,y);
+    }
+}
+
+window.addEventListener("resize", update);
+
+document.addEventListener("scroll", scrollFun);
+
+screen.orientation.addEventListener("change", update);

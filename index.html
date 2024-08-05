@@ -84,12 +84,14 @@ p{
     height:100%;
     background: #b6b6b6;
     color:#111; 
-    border-radius:5px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 
 .items{
     width:60%;
     padding:10px;
+    font-size:25px;
     margin:auto;
     text-align:center;
 }
@@ -108,11 +110,27 @@ p{
     margin:auto;
 }
 
+.title{
+    background-color:grey;
+    width:80%;margin:auto;
+    border-top-right-radius:10px;
+    border-top-left-radius:10px;
+    padding:10px;
+}
+
+#pfp{
+    margin:auto;
+    width:25%;
+}
+
+#socials{
+    margin:auto;
+    width:4%;
+}
+
 @media screen and (orientation: portrait) {
     #projects{
         width:100%;
-        margin:auto;
-        object-fit:fill;
     }
 
     #bio{
@@ -139,6 +157,23 @@ p{
         font-size: 50px;
         letter-spacing: 5px;
     }
+
+    .title{
+        width:100%;
+        border-radius:0px;
+    }
+    
+    .project-background{
+        border-radius:0px;
+    }
+
+    #pfp{
+        width:80%;
+    }
+
+    #socials{
+        width:10%;
+    }
 }
 
 @media screen and (orientation: landscape){
@@ -154,28 +189,31 @@ p{
         </div>
     </div>
     <div id="bio">
-        <h3>Eagle Scout and student at Purdue University in Computer Engineering.</h3>
+        <h3 class="title" style="border-radius:10px">Eagle Scout and student at Purdue University in Computer Engineering.</h3>
         <h4 style="text-align:left;"><br><br>Welcome to my website, below are a list of my projects I have worked on throughout college that I am proud of. I have always had an
-            intrest in tinkering and developing and throughout the years I have planned, developed and executed some projects along the way. Outside of my regular school work I enjoy
+            interest in tinkering and developing and throughout the years I have planned, developed and executed some projects along the way. Outside of my regular school work I enjoy
             photography and have picked up film photography recently using my grandfathers 35mm camera. I am also the lead technician on the Urba go-kart team and have raced in the Purdue Grand Prix 
             since my freshman year. I was also part of the Purdue Chain Reaction Team for two years, now named the Purdue Rube Goldberg Team and I developed <a href="https://www.boilermakerrubegoldberg.com">this website</a>
             for them. Just like this website, I developed it from scratch. I also 3D model and 3D print in my free time. This ends up usually being DnD figurines and little items to help
             me around the house. Enjoy the website.
         </h4>
+        <br>
+        <div id="pfp" >
+            <image style="width:100%;border-radius:50%;" src="images/index/pfp.jpg"></image>
+        </div>
+        <div id="socials" style="padding-top:20px;">
+            <a href="https://www.linkedin.com/in/nick-durnil/"><image style="width:100%;border-radius:5%;" src="images/index/linkedin.png"></image></a>
+        </div>
     </div>
     <div style="text-align:center;">
-        <h3>Projects</h3>
+        <h3 class="title">Projects</h3>
         <div id="projects" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <div class="project-background">
                         <h3 style="color:black;padding-top:10px">Peerless Pump</h3>
-                        <p class="items">At Peerless Pump, I worked on various projects within the FireConect unit. My most
-                            notable projects from my time here include, a new testing box that allowed for easier and quicker
-                            setup of fire pumps to analyze the website and ensure that the data was being presented properly, a
-                            fire pump curve analyzer that gave us an accurate approximation of a pumps output so we could estimate
-                            it on the website for customers, and an auto configurator for a device called a Trumeter that we used
-                            on our product if a user had a diesel tank. Click on the FireConnect logo to learn more about my projects.
+                        <p class="items">At Peerless Pump, I worked on various projects within the FireConect unit. 
+                            Click on the FireConnect logo to learn more about my projects.
                         </p>
                         <a  href="/peerless.html"><img class="items" src="/images/Index/fireconnect.png"></a>
                     </div>

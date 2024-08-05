@@ -12,6 +12,48 @@
     font-size:25px;
 }
 
+body{
+    background-color:black;
+}
+
+.project{
+    width:85%;
+    margin:auto;
+    padding-top:50px;
+}
+
+.title{
+    background-color: grey;
+    width:100%;
+    margin:auto;
+    text-align:center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    font-size:40px;
+    padding-bottom:10px;
+}
+
+.description{
+    width:100%;
+    margin:auto;
+    text-align:center;
+    background-color:dimgray;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.description h4{
+    width:85%;
+    margin:auto;
+    font-size:25px;
+    padding-top:5px;
+}
+
+.img{
+    width:60%;
+    margin:auto;
+}
+
 @media screen and (orientation: portrait) {
     .back-bar{
         font-size:50px;
