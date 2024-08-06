@@ -80,7 +80,7 @@ function updateCloseup(){
     var cancel = document.getElementById("cancelButton");
     var img = document.getElementById("fullQuality");
 
-    if(window.innerWidth > window.innerHeight){
+    if(window.innerWidth * 3 / 2 > window.innerHeight){
         img.style.height = "100%";
         img.style.width = ''; 
     }
