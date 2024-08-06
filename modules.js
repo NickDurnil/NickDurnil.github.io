@@ -46,7 +46,7 @@ function presentImage(location){
     cancel.style.position = "absolute";
     cancel.style.zIndex = "101";
     cancel.style.top = cancel.getBoundingClientRect().top + window.scrollY + 25 + "px";
-    cancel.style.left = window.innerWidth - 125 + "px";
+    cancel.style.right = "5%";
     cancel.id = "cancelButton";
     cancel.onclick = function(){cancelButton()};
 
@@ -64,7 +64,6 @@ function cancelButton(){
 
 function updateCloseup(){
     var cancel = document.getElementById("cancelButton");
-    cancel.style.left = window.innerWidth - 125 + "px";
 
     var img = document.getElementById("fullQuality");
 
