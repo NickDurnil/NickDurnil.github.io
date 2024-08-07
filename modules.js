@@ -20,7 +20,7 @@ function presentImage(location){
     scrolling = 1;
 
     var img = new Image();
-    img.src = "images/" + location;
+    img.src = location;
     img.id = "fullQuality";
     if(window.innerWidth > window.innerHeight){
         img.style.height = "90%";

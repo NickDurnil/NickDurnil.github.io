@@ -36,26 +36,30 @@ body{
 .description{
     width:100%;
     margin:auto;
-    text-align:center;
     background-color:dimgray;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
 }
 
-.description h4{
-    width:85%;
+.description p{
+    width:95%;
     margin:auto;
     font-size:25px;
-    padding-top:5px;
+    padding:10px;
 }
 
 .img{
     width:60%;
     margin:auto;
+    padding-top:10px;
 }
 
 @media screen and (orientation: portrait) {
     .back-bar{
         font-size:50px;
+    }
+
+    .project{
+        width:100%;
     }
 }
