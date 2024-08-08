@@ -28,15 +28,20 @@
     <div class="project">
         <h2 class="title">Testing Box</h2>
         <div class="description">
-            <div class="img">
-                <image style="width:100%;border-radius: 10px;" onclick="presentImage('images/FireConnect/pumpCurve.png')" src="images/FireConnect/pumpCurve.png"></image>
+            <div class="img" style="margin-right:5%;">
+                <image style="width:50%;border-radius: 10px;" onclick="presentImage('images/FireConnect/box.jpg')" src="images/FireConnect/box.jpg"></image>
             </div>
             <p> Using a P1AM ProOpen and some expansion modules, I created a program we could plug into any main pump and jockey pump combination and fake out 
                 the controllers to think they are operating normally. This would allow us to test the FireConnect webiste and ensure that the right data was being
                 outputted. The microcontroller in the P1AM ProOpen is an Arduino MRK Zero which allowed me to use the arduino IDE to program it. In the program I used
                 and interrupt timer so every point was outputted consistantly every .1 seconds. The program used two expansion cards for analog current and voltage 
-                outputs which would allow a user to recreate the same signal a pressure transducer would be sending the fire pump controllers. The P1AM connected
-                to an HMI using MODBUS TCP/IP, allowing a user to input the sensor specifications. An example of this is some controllers use a .5-6V input where others
+                outputs which would allow a user to recreate the same signal a pressure transducer would be sending the fire pump controllers.
+            </p>
+            <div class="img" style="margin-right:5%;">
+                <image style="width:50%;border-radius: 10px;" onclick="presentImage('images/FireConnect/HMI.jpg')" src="images/FireConnect/HMI.jpg"></image>
+            </div>
+            <p> 
+                The P1AM connected to an HMI using MODBUS TCP/IP, allowing a user to input the sensor specifications. An example of this is some controllers use a .5-6V input where others
                 use a 1-5V or 4-20mA. Because of this, the user would input this into the HMI and it would recalculate the outputs to propperly fake the sensor. Because
                 this test is used for long durations of time I had to save varaibles into flash storage in case the power would go out, the box could turn back on and 
                 resume the long term test. On top of this long test, there was a button that would turn on a pump flow test. This test would make the fire pump controller
@@ -51,7 +56,10 @@
         <h2 class="title">TruMeter AutoConfig</h2>
         <div class="description">
             <div class="img">
-                <image style="width:100%;border-radius: 10px;" onclick="presentImage('images/FireConnect/pumpCurve.png')" src="images/FireConnect/pumpCurve.png"></image>
+                <image style="width:100%;border-radius: 10px;" onclick="presentImage('images/FireConnect/trumeter.png')" src="images/FireConnect/trumeter.png"></image>
+            </div>
+            <div class="img" style="margin-right:5%;">
+                <image style="width:50%;border-radius: 10px;" onclick="presentImage('images/FireConnect/diesel.jpg')" src="images/FireConnect/diesel.jpg"></image>
             </div>
             <p> On the FireConnect boxes, there is a device called a TruMeter that takes a current input and rescales it to a full 4-20mA output. This is used to rescale
                 the output of a pressure sensor for diesel tanks. Diesel tanks are cylindrical and put on their side so we could not estimate the volume when the sensor reads
