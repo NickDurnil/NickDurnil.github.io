@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="myCSS.css" rel="stylesheet">
+    <script src="modules.js"></script>
+</head>
+<body>
+    <h1><a class="back-bar" href="index.html">Back to Main Page</a></h1>
+    <div id="fullScreen"></div>
+    <div class="project">
+        <h2 class="title">Fox Valley</h2>
+        <div class="description">
+            <div class="img">
+                <image style="width:100%;border-radius: 10px;" onclick="presentImage('images/fox valley/box.jpg')" src="images/fox valley/box.jpg"></image>
+            </div>
+            <p> <a href="https://www.foxvalleykart.com/">Fox Valley</a> is a local go-kart company in Lafayette that sells go-kart parts and blueprints
+                Yamaha kt100 engines. In the 80s a senior made a go-kart engine dynometer so that John Copeland(The owner of Fox Valley) could test engines.
+                The engine dyno measures the torque and RPM of the engines so he can see how engines perform against each other in a semi ideal setting. This 
+                was a server rack full of parts connected into a room with an elevator motor that the engine would be connected to in order to read the data.
+                This plots an excel sheet showing the temperatures of the engine, the exhaust gas temperature, RPM, torque, and horse power of the enigne. 
+                The original program ran using MS-DOS and a server rack of parts to allow the computer to read the data. I took the MS-DOS program to learn
+                about how the back end worked and spent about 6 months taking apart the system and creating my own solution. On top of having to run the program,
+                the only other requirement was that it could connect to modern printers which was an issue with the old design. I ended up coding the entire 
+                program in python to run on a raspberry pi. The program allowed him to enter the same items he would normally and would automatically do 
+                corrections for the environment. In the original program, John was able to put in a series of different data points including, temperature,
+                wet bulb, dry bulb, and barometric pressure and the program would calculate a j607 and j1349 correction factors to correct for temperature, 
+                humidity, and elevation so no matter what time of year he ran the engine, all of them should have corrected data. This would give data as if 
+                the engines were tested at sea level in either 77&deg;F or 60&deg;F in 0% humidity. I attached a sensor to the raspberry pi that would allow 
+                John to hit a button and automatically create the data points. At the end of the project we had condensed a full server rack of parts to 2 project 
+                boxes, one with the raspberry pi and adc chips to convert, and one for the original power devices to run the elevator motor.
+            </p>
+        </div>
+    </div>
+</body>
+</html>
