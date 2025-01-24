@@ -95,7 +95,7 @@ function loadImages(){
     var j = 0;
     var width = window.innerWidth / 4;
     var vertWidth = width * 1.5;
-    for (let i = 1; i <= numImages; i ++){
+    for (let i = numImages; i > 0; i --){
         j++;
         if(!vertImage[(j - 1) % 3]){
             var x = document.createElement("button");
@@ -152,7 +152,7 @@ function updateImages(){
     var vertWidth = width * 1.5;
     var translation = "0% ";
     j = 0;
-    for (let i = 1; i < numImages; i ++){
+    for (let i = numImages; i > 0; i --){
         j++;
         if(!vertImage[(j - 1) % 3]){
             var img = new Image();
